@@ -5,6 +5,7 @@
 1. 只支持url或文件识别
 2. 改用ants管理goroutine
 3. 改用req代替默认的http发包
+4. 汇总去重ehole_magic和finger的指纹
 
 
 

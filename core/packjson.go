@@ -2,6 +2,7 @@ package core
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 )
 
@@ -29,6 +30,7 @@ func LoadWebfingerprint(path string) error {
 	var config Packjson
 	err = json.Unmarshal(data, &config)
 	if err != nil {
+		fmt.Println(err)
 		return err
 	}
 	Webfingerprint = &config
