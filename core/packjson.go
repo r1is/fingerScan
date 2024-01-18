@@ -1,9 +1,9 @@
 package core
 
 import (
+	_ "embed"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 )
 
 type Packjson struct {
@@ -17,18 +17,17 @@ type Fingerprint struct {
 	Keyword  []string
 }
 
+//go:embed finger/finger.json
+var eHoleFinger string
+
 var (
 	Webfingerprint *Packjson
 )
 
-func LoadWebfingerprint(path string) error {
-	data, err := ioutil.ReadFile(path)
-	if err != nil {
-		return err
-	}
+func LoadWebfingerprint() error {
 
 	var config Packjson
-	err = json.Unmarshal(data, &config)
+	err := json.Unmarshal([]byte(eHoleFinger), &config)
 	if err != nil {
 		fmt.Println(err)
 		return err

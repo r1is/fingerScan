@@ -6,6 +6,7 @@
 2. 改用ants管理goroutine
 3. 改用req代替默认的http发包
 4. 汇总去重ehole_magic和finger的指纹
+5. 打包指纹文件进程序
 
 
 
