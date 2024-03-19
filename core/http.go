@@ -5,7 +5,6 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"github.com/imroc/req/v3"
 	"math/rand"
-	"net/http"
 	"net/url"
 	"strings"
 	"time"
@@ -82,11 +81,12 @@ func getfavicon(httpbody string, turl string) string {
 func Httprequest(url []string, proxy string) (*Resps, error) {
 	// 判断是否设置代理，如果设置 加上
 	client := req.C()
-	cookie := &http.Cookie{
-		Name:  "rememberMe",
-		Value: "me",
-	}
-	client.EnableInsecureSkipVerify().SetUserAgent(rndua()).SetTLSFingerprintChrome().SetTimeout(5 * time.Second).SetCommonCookies(cookie)
+	//cookie := &http.Cookie{
+	//	Name:  "rememberMe",
+	//	Value: "me",
+	//}
+	//client.EnableInsecureSkipVerify().SetUserAgent(rndua()).SetTLSFingerprintChrome().SetTimeout(5 * time.Second).SetCommonCookies(cookie)
+	client.EnableInsecureSkipVerify().SetUserAgent(rndua()).SetTLSFingerprintChrome().SetTimeout(5 * time.Second)
 	if proxy != "" {
 		client.SetProxyURL(proxy)
 	}
