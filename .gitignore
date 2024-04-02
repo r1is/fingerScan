@@ -22,3 +22,14 @@ url.txt
 # Go workspace file
 go.work
 
+#idea
+*.idea
+.idea
+main
+*.zip
+*zip
+*.html
+*html
+fingerscan*
+.vscode/**
+**.vscode

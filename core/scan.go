@@ -3,11 +3,12 @@ package core
 import (
 	"fingerScan/utils"
 	"fmt"
-	"github.com/gookit/color"
-	"github.com/panjf2000/ants/v2"
 	"os"
 	"strings"
 	"sync"
+
+	"github.com/gookit/color"
+	"github.com/panjf2000/ants/v2"
 )
 
 type Outrestul struct {
@@ -114,6 +115,14 @@ func (s *FinScan) fingerScan() {
 			for _, jurl := range data.Jsurl {
 				if jurl != "" {
 					s.UrlQueue.Push([]string{jurl, "1"})
+				}
+			}
+			//nacos 探测
+			if data.Statuscode == 404 && strings.Contains(data.Body, "HTTP Status 404 – Not Found") && !strings.Contains(data.Body, "[/]") {
+				urlWithNacos := url[0] + "/nacos"
+				data, err = Httprequest([]string{urlWithNacos, "1"}, s.Proxy)
+				if err != nil {
+					continue
 				}
 			}
 			headers := utils.MapToJson(data.Header)
